@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Webchat8</title>
+    <title>Webchat</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= include_sync_config %>
 
+  </head>
   <body>
 
     <nav class="navbar navbar-inverse">
@@ -18,6 +19,8 @@
         <ul class="nav navbar-nav">
           <% if user_signed_in? %>
           <li><a>Hi, <%= current_user.name %>!!</a></li>
+          <li><%= link_to 'Friends', friendships_path %></li>
+          <li><%= link_to 'Users', users_path %></li>
           <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
           <% else %>
           <li><%= link_to 'Log In', new_user_session_path %></li>
